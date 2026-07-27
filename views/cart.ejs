@@ -1,0 +1,41 @@
+<section class="cart-page">
+  <h1>Your Cart</h1>
+
+  <% if (items.length === 0) { %>
+    <p class="empty-state">Your cart is empty. <a href="/">Continue shopping</a>.</p>
+  <% } else { %>
+    <div class="cart-page__layout">
+      <div class="cart-items">
+        <% items.forEach(function(item) { %>
+          <div class="cart-item" data-cart-item="<%= item.productId %>">
+            <img src="<%= item.image || '/images/branding/hero.svg' %>" alt="<%= item.name %>" class="cart-item__image">
+            <div class="cart-item__details">
+              <a href="/product/<%= item.slug %>"><%= item.name %></a>
+              <% if (item.variant) { %><p class="cart-item__variant"><%= item.variant %></p><% } %>
+              <p class="cart-item__price">&#8358;<%= item.unitPrice.toLocaleString() %> each</p>
+            </div>
+            <input type="number" min="1" max="<%= item.maxStock %>" value="<%= item.quantity %>" class="cart-item__qty" data-cart-qty="<%= item.productId %>">
+            <p class="cart-item__line-total">&#8358;<%= item.lineTotal.toLocaleString() %></p>
+            <button type="button" class="cart-item__remove" data-cart-remove="<%= item.productId %>">Remove</button>
+          </div>
+        <% }); %>
+      </div>
+
+      <aside class="cart-summary">
+        <h2>Order Summary</h2>
+        <form class="cart-summary__coupon" data-coupon-form>
+          <input type="text" name="code" placeholder="Coupon code" value="<%= couponCode %>">
+          <button type="submit">Apply</button>
+        </form>
+        <dl class="cart-summary__totals" data-cart-totals>
+          <dt>Subtotal</dt><dd>&#8358;<%= totals.subtotal.toLocaleString() %></dd>
+          <% if (totals.discount > 0) { %><dt>Discount</dt><dd>-&#8358;<%= totals.discount.toLocaleString() %></dd><% } %>
+          <dt>Tax</dt><dd>&#8358;<%= totals.tax.toLocaleString() %></dd>
+          <dt>Shipping</dt><dd>Calculated at checkout</dd>
+          <dt class="cart-summary__total-label">Total</dt><dd class="cart-summary__total-value">&#8358;<%= totals.total.toLocaleString() %></dd>
+        </dl>
+        <a href="/checkout" class="btn btn--primary btn--block">Proceed to Checkout</a>
+      </aside>
+    </div>
+  <% } %>
+</section>

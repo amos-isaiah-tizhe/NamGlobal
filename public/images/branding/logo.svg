@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 300" width="420" height="300" role="img" aria-labelledby="logoTitle">
+  <title id="logoTitle">Nam Global — Home of Quality Phones, Gadgets</title>
+  <defs>
+    <linearGradient id="brandGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7941D"/>
+      <stop offset="100%" stop-color="#ED1C24"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Icon mark: cart-basket silhouette fused with a lowercase "n", orange-to-red gradient, wheel/dot accent -->
+  <g transform="translate(148,10)">
+    <path d="M14 8
+             C14 4 17 1 21 1
+             C25 1 28 4 28 8
+             L28 96
+             C28 101 24 105 19 105
+             C14 105 10 101 10 96
+             L10 38"
+          fill="none" stroke="url(#brandGradient)" stroke-width="15" stroke-linecap="round"/>
+
+    <path d="M18 48
+             C18 26 37 10 60 10
+             C83 10 100 26 100 47
+             L100 82"
+          fill="none" stroke="url(#brandGradient)" stroke-width="15" stroke-linecap="round"/>
+
+    <path d="M100 47
+             L100 96
+             C100 101 104 105 109 105
+             C114 105 118 101 118 96
+             L118 49"
+          fill="none" stroke="url(#brandGradient)" stroke-width="15" stroke-linecap="round"/>
+
+    <circle cx="60" cy="120" r="7.5" fill="url(#brandGradient)"/>
+  </g>
+
+  <!-- Wordmark: single line, "Nam" orange + "Global" black -->
+  <g font-family="'Poppins','Montserrat',Arial,sans-serif" font-weight="800" text-anchor="middle">
+    <text x="210" y="205" font-size="52">
+      <tspan fill="#F7941D">Nam</tspan><tspan fill="#111111">Global</tspan>
+    </text>
+  </g>
+
+  <!-- Tagline -->
+  <g font-family="'Poppins','Montserrat',Arial,sans-serif" font-weight="600" text-anchor="middle">
+    <text x="210" y="238" font-size="17" fill="#111111" letter-spacing="0.5">Home of quality phones, gadgets</text>
+  </g>
+</svg>

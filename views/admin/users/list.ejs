@@ -1,0 +1,25 @@
+<h1>Users</h1>
+
+<table class="admin-table">
+  <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Active</th><th></th></tr></thead>
+  <tbody>
+    <% users.forEach(function(u) { %>
+      <tr>
+        <td><%= u.firstName %> <%= u.lastName %></td>
+        <td><%= u.email %></td>
+        <td>
+          <form data-role-form="<%= u._id %>" class="admin-form--inline">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <select name="role">
+              <% roles.forEach(function(r) { %><option value="<%= r %>" <%= u.role === r ? "selected" : "" %>><%= r %></option><% }); %>
+            </select>
+            <input type="text" name="approvedByUserId" placeholder="2nd approver ID (if super_admin)">
+            <button type="submit">Save</button>
+          </form>
+        </td>
+        <td><%= u.isActive ? "Yes" : "No" %></td>
+        <td><button type="button" data-toggle-user="<%= u._id %>"><%= u.isActive ? "Deactivate" : "Activate" %></button></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

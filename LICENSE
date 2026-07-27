@@ -1,0 +1,13 @@
+Copyright (c) 2026 Nam Global. All Rights Reserved.
+
+This software and associated documentation were developed by Amos Isaiah
+Tizhe for OneXportal (https://onexportalhq.com) as a commercial deliverable
+for Nam Global.
+
+This is proprietary software. No part of this codebase may be copied,
+modified, distributed, sublicensed, or used to create derivative works
+without the express written permission of Nam Global, except as otherwise
+agreed in writing between Nam Global and OneXportal.
+
+Third-party open-source packages used by this project (see package.json)
+remain licensed under their own respective terms.

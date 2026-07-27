@@ -1,0 +1,10 @@
+<% if (products && products.length > 0) { %>
+<section class="product-section">
+  <h2 class="product-section__title"><%= sectionTitle %></h2>
+  <div class="product-grid">
+    <% products.forEach(function(product) { %>
+      <%- include("./product-card", { product: product }) %>
+    <% }); %>
+  </div>
+</section>
+<% } %>

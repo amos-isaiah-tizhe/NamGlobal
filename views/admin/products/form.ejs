@@ -1,0 +1,51 @@
+<h1><%= product ? "Edit" : "New" %> Product</h1>
+
+<form method="POST" action="<%= product ? `/admin/products/${product._id}` : "/admin/products" %>" class="admin-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+  <label>Name<input type="text" name="name" value="<%= product ? product.name : '' %>" required></label>
+  <label>SKU<input type="text" name="sku" value="<%= product ? product.sku : '' %>" required></label>
+
+  <label>Category
+    <select name="category" required>
+      <% categories.forEach(function(c) { %>
+        <option value="<%= c._id %>" <%= product && product.category && product.category.toString() === c._id.toString() ? "selected" : "" %>><%= c.name %></option>
+      <% }); %>
+    </select>
+  </label>
+
+  <label>Brand
+    <select name="brand">
+      <option value="">—</option>
+      <% brands.forEach(function(b) { %>
+        <option value="<%= b._id %>" <%= product && product.brand && product.brand.toString() === b._id.toString() ? "selected" : "" %>><%= b.name %></option>
+      <% }); %>
+    </select>
+  </label>
+
+  <label>Price (₦)<input type="number" name="price" value="<%= product ? product.price : '' %>" required></label>
+  <label>Discount price (₦)<input type="number" name="discountPrice" value="<%= product && product.discountPrice ? product.discountPrice : '' %>"></label>
+  <label>Stock<input type="number" name="stock" value="<%= product ? product.stock : 0 %>" required></label>
+
+  <label>Short description<textarea name="shortDescription"><%= product ? product.shortDescription : '' %></textarea></label>
+  <label>Full description<textarea name="description"><%= product ? product.description : '' %></textarea></label>
+
+  <label>Status
+    <select name="status">
+      <option value="draft" <%= product && product.status === "draft" ? "selected" : "" %>>Draft</option>
+      <option value="active" <%= product && product.status === "active" ? "selected" : "" %>>Active</option>
+      <option value="out_of_stock" <%= product && product.status === "out_of_stock" ? "selected" : "" %>>Out of stock</option>
+      <option value="discontinued" <%= product && product.status === "discontinued" ? "selected" : "" %>>Discontinued</option>
+    </select>
+  </label>
+
+  <fieldset class="admin-form__flags">
+    <label><input type="checkbox" name="featured" <%= product && product.featured ? "checked" : "" %>> Featured</label>
+    <label><input type="checkbox" name="trending" <%= product && product.trending ? "checked" : "" %>> Trending</label>
+    <label><input type="checkbox" name="flashSale" <%= product && product.flashSale ? "checked" : "" %>> Flash sale</label>
+    <label><input type="checkbox" name="newArrival" <%= product && product.newArrival ? "checked" : "" %>> New arrival</label>
+    <label><input type="checkbox" name="bestseller" <%= product && product.bestseller ? "checked" : "" %>> Bestseller</label>
+  </fieldset>
+
+  <button type="submit" class="btn btn--primary">Save</button>
+</form>

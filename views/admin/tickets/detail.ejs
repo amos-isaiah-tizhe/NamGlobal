@@ -1,0 +1,25 @@
+<h1><%= ticket.subject %></h1>
+<p>Status: <%= ticket.status %> | Type: <%= ticket.type %></p>
+
+<div class="ticket-thread">
+  <% ticket.messages.forEach(function(m) { %>
+    <div class="ticket-message">
+      <strong><%= m.sender ? (m.sender.firstName + (m.sender.role ? " (" + m.sender.role + ")" : "")) : "Guest" %></strong>
+      <p><%= m.body %></p>
+    </div>
+  <% }); %>
+</div>
+
+<form data-ticket-reply-form="<%= ticket._id %>" class="admin-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label>Reply<textarea name="message" required></textarea></label>
+  <label>Update status
+    <select name="status">
+      <option value="open" <%= ticket.status === "open" ? "selected" : "" %>>Open</option>
+      <option value="in_progress" <%= ticket.status === "in_progress" ? "selected" : "" %>>In progress</option>
+      <option value="resolved" <%= ticket.status === "resolved" ? "selected" : "" %>>Resolved</option>
+      <option value="closed" <%= ticket.status === "closed" ? "selected" : "" %>>Closed</option>
+    </select>
+  </label>
+  <button type="submit" class="btn btn--primary">Send reply</button>
+</form>

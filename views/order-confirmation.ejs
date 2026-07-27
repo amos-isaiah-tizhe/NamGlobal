@@ -1,0 +1,25 @@
+<section class="order-confirmation">
+  <h1>Thank you!</h1>
+  <p>Your order <strong><%= order.orderNumber %></strong> has been received.</p>
+
+  <% if (order.status === "pending_whatsapp") { %>
+    <p>We've sent your order details to WhatsApp — a member of the <%= "Nam Global" %> team will confirm it with you shortly.</p>
+  <% } else if (order.status === "pending") { %>
+    <p>Status: <strong>Awaiting payment confirmation</strong>. This page updates once your payment provider confirms the transaction — no need to refresh repeatedly, it can take a few moments.</p>
+  <% } else { %>
+    <p>Status: <strong><%= order.status %></strong>.</p>
+  <% } %>
+
+  <table class="order-confirmation__items">
+    <% order.items.forEach(function(item) { %>
+      <tr>
+        <td><%= item.name %> x<%= item.quantity %></td>
+        <td>&#8358;<%= item.lineTotal.toLocaleString() %></td>
+      </tr>
+    <% }); %>
+  </table>
+
+  <p class="order-confirmation__total">Total: &#8358;<%= order.total.toLocaleString() %></p>
+
+  <a href="/" class="btn btn--primary">Continue shopping</a>
+</section>

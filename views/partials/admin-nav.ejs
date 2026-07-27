@@ -1,0 +1,18 @@
+<nav class="admin-nav">
+  <a href="/admin" class="admin-nav__brand"><%= site.name %> <span>Admin</span></a>
+  <ul>
+    <li><a href="/admin">Dashboard</a></li>
+    <li><a href="/admin/products">Products</a></li>
+    <li><a href="/admin/categories">Categories</a></li>
+    <li><a href="/admin/orders">Orders</a></li>
+    <li><a href="/admin/coupons">Coupons</a></li>
+    <li><a href="/admin/tickets">Support Tickets</a></li>
+    <% if (typeof user !== "undefined" && user && user.role === "super_admin") { %>
+      <li><a href="/admin/users">Users</a></li>
+      <li><a href="/admin/audit-logs">Audit Logs</a></li>
+      <li><a href="/admin/settings">Site Settings</a></li>
+      <li><a href="/admin/incident-response">Incident Response</a></li>
+    <% } %>
+  </ul>
+  <a href="/" class="admin-nav__exit">&larr; Back to storefront</a>
+</nav>

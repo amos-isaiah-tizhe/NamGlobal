@@ -1,0 +1,22 @@
+<h1>Audit Logs</h1>
+<a href="/admin/audit-logs/export" class="btn btn--outline">Export CSV</a>
+
+<table class="admin-table">
+  <thead><tr><th>Time</th><th>Actor</th><th>Action</th><th>Target</th></tr></thead>
+  <tbody>
+    <% logs.forEach(function(log) { %>
+      <tr>
+        <td><%= log.createdAt.toLocaleString() %></td>
+        <td><%= log.actor ? log.actor.email : "unknown" %></td>
+        <td><%= log.action %></td>
+        <td><%= log.targetType %> <%= log.targetId %></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<nav class="pagination">
+  <% if (page > 1) { %><a href="?page=<%= page - 1 %>">&larr; Prev</a><% } %>
+  <span>Page <%= page %> of <%= totalPages %></span>
+  <% if (page < totalPages) { %><a href="?page=<%= page + 1 %>">Next &rarr;</a><% } %>
+</nav>

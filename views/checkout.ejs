@@ -1,0 +1,66 @@
+<section class="checkout-page">
+  <h1>Checkout</h1>
+
+  <div class="checkout-page__layout">
+    <form id="checkout-form" class="checkout-form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+      <h2>Delivery details</h2>
+      <label for="recipientName">Full name</label>
+      <input id="recipientName" name="recipientName" type="text" placeholder="Isaiah Amos Tizhe" required>
+
+      <label for="phone">Phone</label>
+      <input id="phone" name="phone" type="tel" placeholder="+234 803 456 7890" required>
+
+      <% if (!user) { %>
+        <label for="guestEmail">Email (for order updates)</label>
+        <input id="guestEmail" name="guestEmail" type="email" placeholder="isaiah.amos@namsglobal.com" required>
+      <% } %>
+
+      <label for="line1">Address</label>
+      <input id="line1" name="line1" type="text" placeholder="No. 25 Aminu Kano Crescent, Wuse II" required>
+
+      <label for="line2">Address line 2 (optional)</label>
+      <input id="line2" name="line2" type="text">
+
+      <label for="city">City</label>
+      <input id="city" name="city" type="text" placeholder="Keffi" required>
+
+      <label for="state">State</label>
+      <input id="state" name="state" type="text" placeholder="Nasarawa" required>
+
+      <h2>Payment method</h2>
+      <label class="checkout-form__radio"><input type="radio" name="paymentProvider" value="paystack" checked> Paystack</label>
+      <label class="checkout-form__radio"><input type="radio" name="paymentProvider" value="flutterwave"> Flutterwave</label>
+      <label class="checkout-form__radio"><input type="radio" name="paymentProvider" value="stripe"> Card (Stripe)</label>
+      <p class="checkout-form__note">You'll be redirected to your chosen provider to complete payment securely — Paystack and Flutterwave's own checkout pages also let you pay by bank transfer, USSD, or debit/ATM card, not just a saved card. Prefer to pay by cash at the store, Moniepoint, or Opay? Use "Order via WhatsApp" below instead and confirm payment with our team directly.</p>
+      <p class="checkout-form__legal-note">
+        By placing this order you agree to our <a href="/terms" target="_blank" rel="noopener">Terms of Service</a>
+        (including our <a href="/terms#returns" target="_blank" rel="noopener">return and warranty terms</a>) and
+        <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.
+      </p>
+
+      <div class="checkout-form__actions">
+        <button type="submit" id="place-order-btn" class="btn btn--primary">Place order</button>
+        <button type="button" id="whatsapp-order-btn" class="btn btn--outline">Order via WhatsApp instead</button>
+      </div>
+    </form>
+
+    <aside class="cart-summary">
+      <h2>Order Summary</h2>
+      <% items.forEach(function(item) { %>
+        <div class="checkout-summary-item">
+          <span><%= item.name %> x<%= item.quantity %></span>
+          <span>&#8358;<%= item.lineTotal.toLocaleString() %></span>
+        </div>
+      <% }); %>
+      <dl class="cart-summary__totals">
+        <dt>Subtotal</dt><dd>&#8358;<%= totals.subtotal.toLocaleString() %></dd>
+        <% if (totals.discount > 0) { %><dt>Discount</dt><dd>-&#8358;<%= totals.discount.toLocaleString() %></dd><% } %>
+        <dt>Tax</dt><dd>&#8358;<%= totals.tax.toLocaleString() %></dd>
+        <dt>Shipping</dt><dd>&#8358;<%= totals.shippingFee.toLocaleString() %></dd>
+        <dt class="cart-summary__total-label">Total</dt><dd class="cart-summary__total-value">&#8358;<%= totals.total.toLocaleString() %></dd>
+      </dl>
+    </aside>
+  </div>
+</section>

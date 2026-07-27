@@ -1,0 +1,21 @@
+<section class="account-page">
+  <h1>Order <%= order.orderNumber %></h1>
+  <p>Status: <span class="status-badge status-badge--<%= order.status %>"><%= order.status %></span></p>
+  <% if (order.status === "refund_requested" || order.status === "refunded" || order.status === "disputed") { %>
+    <p class="admin-note">
+      <% if (order.status === "refunded") { %>Refunded<% if (order.refundReference) { %> (ref: <%= order.refundReference %>)<% } %>.<% } %>
+      <% if (order.status === "refund_requested") { %>Your refund request is being reviewed.<% } %>
+      <% if (order.status === "disputed") { %>This order is flagged as disputed and under review.<% } %>
+    </p>
+  <% } %>
+
+  <table class="admin-table">
+    <thead><tr><th>Item</th><th>Qty</th><th>Line total</th></tr></thead>
+    <tbody>
+      <% order.items.forEach(function(item) { %>
+        <tr><td><%= item.name %></td><td><%= item.quantity %></td><td>&#8358;<%= item.lineTotal.toLocaleString() %></td></tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <p>Total: <strong>&#8358;<%= order.total.toLocaleString() %></strong></p>
+</section>

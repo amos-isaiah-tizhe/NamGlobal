@@ -1,0 +1,39 @@
+<section class="category-page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a> &rsaquo; <span><%= category.name %></span>
+  </nav>
+
+  <div class="category-page__header">
+    <h1><%= category.name %></h1>
+    <% if (category.description) { %><p><%= category.description %></p><% } %>
+  </div>
+
+  <div class="category-page__toolbar">
+    <form method="GET" class="category-page__search">
+      <input type="search" name="q" placeholder="Search in <%= category.name %>" value="<%= activeSearch %>">
+      <button type="submit">Search</button>
+    </form>
+
+    <form method="GET" class="category-page__sort">
+      <label for="sort">Sort by</label>
+      <select id="sort" name="sort" onchange="this.form.submit()">
+        <option value="newest" <%= activeSort === "newest" ? "selected" : "" %>>Newest</option>
+        <option value="price_asc" <%= activeSort === "price_asc" ? "selected" : "" %>>Price: Low to High</option>
+        <option value="price_desc" <%= activeSort === "price_desc" ? "selected" : "" %>>Price: High to Low</option>
+        <option value="rating" <%= activeSort === "rating" ? "selected" : "" %>>Top Rated</option>
+      </select>
+    </form>
+  </div>
+
+  <% if (products.length === 0) { %>
+    <p class="empty-state">No products found in this category yet.</p>
+  <% } else { %>
+    <div class="product-grid">
+      <% products.forEach(function(product) { %>
+        <%- include("partials/product-card", { product: product }) %>
+      <% }); %>
+    </div>
+  <% } %>
+
+  <%- include("partials/pagination", { pagination: pagination }) %>
+</section>

@@ -1,0 +1,42 @@
+<h1>Order <%= order.orderNumber %></h1>
+
+<p>
+  Status: <span class="status-badge status-badge--<%= order.status %>"><%= order.status %></span>
+  &nbsp;|&nbsp; Channel: <%= order.channel %>
+  &nbsp;|&nbsp; Customer: <%= order.user ? (order.user.firstName + " " + order.user.lastName + " (" + order.user.email + ")") : (order.guestEmail || "Guest") %>
+</p>
+
+<h2>Items</h2>
+<table class="admin-table">
+  <thead><tr><th>Name</th><th>Qty</th><th>Unit price</th><th>Line total</th></tr></thead>
+  <tbody>
+    <% order.items.forEach(function(item) { %>
+      <tr><td><%= item.name %></td><td><%= item.quantity %></td><td>&#8358;<%= item.unitPrice.toLocaleString() %></td><td>&#8358;<%= item.lineTotal.toLocaleString() %></td></tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<p>Total: <strong>&#8358;<%= order.total.toLocaleString() %></strong></p>
+
+<h2>Update status</h2>
+<form data-order-status-form="<%= order._id %>" class="admin-form admin-form--inline">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <select name="status">
+    <% statuses.forEach(function(s) { %>
+      <option value="<%= s %>" <%= order.status === s ? "selected" : "" %>><%= s %></option>
+    <% }); %>
+  </select>
+  <button type="submit" class="btn btn--primary">Update</button>
+</form>
+
+<% if (["paid","fulfilled","refund_requested","disputed"].includes(order.status) && order.paymentProvider && order.paymentProvider !== "manual") { %>
+<h2>Issue refund</h2>
+<p class="admin-note">Refunds of &#8358;<%= refundThreshold.toLocaleString() %> or more require a second admin's user ID as approval (Section 2.7a segregation of duties).</p>
+<form data-refund-form="<%= order._id %>" class="admin-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label>Amount (₦, leave blank for full refund)<input type="number" name="amount"></label>
+  <label>Reason (required)<input type="text" name="reason" required></label>
+  <label>Second approver's user ID (required if amount ≥ threshold)<input type="text" name="approvedByUserId"></label>
+  <button type="submit" class="btn btn--outline">Issue refund</button>
+</form>
+<% } %>

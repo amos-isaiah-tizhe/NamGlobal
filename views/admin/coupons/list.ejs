@@ -1,0 +1,31 @@
+<h1>Coupons</h1>
+
+<form method="POST" action="/admin/coupons" class="admin-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label>Code<input type="text" name="code" required></label>
+  <label>Type
+    <select name="discountType">
+      <option value="percentage">Percentage</option>
+      <option value="fixed">Fixed amount</option>
+    </select>
+  </label>
+  <label>Value<input type="number" name="discountValue" required></label>
+  <label>Min order value<input type="number" name="minOrderValue"></label>
+  <label>Max uses<input type="number" name="maxUses"></label>
+  <label>Expires at<input type="date" name="expiresAt"></label>
+  <button type="submit" class="btn btn--primary">Create</button>
+</form>
+
+<table class="admin-table">
+  <thead><tr><th>Code</th><th>Type</th><th>Value</th><th>Used</th><th>Active</th><th></th></tr></thead>
+  <tbody>
+    <% coupons.forEach(function(c) { %>
+      <tr>
+        <td><%= c.code %></td><td><%= c.discountType %></td><td><%= c.discountValue %></td>
+        <td><%= c.usedCount %><%= c.maxUses ? "/" + c.maxUses : "" %></td>
+        <td><%= c.isActive ? "Yes" : "No" %></td>
+        <td><button type="button" data-toggle-coupon="<%= c._id %>"><%= c.isActive ? "Deactivate" : "Activate" %></button></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

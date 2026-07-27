@@ -1,0 +1,19 @@
+<section class="search-page">
+  <h1><%= query ? `Search results for "${query}"` : "Search" %></h1>
+
+  <form method="GET" action="/search" class="search-page__form">
+    <input type="search" name="q" placeholder="Search products..." value="<%= query %>" required>
+    <button type="submit">Search</button>
+  </form>
+
+  <% if (query && products.length === 0) { %>
+    <p class="empty-state">No products matched "<%= query %>".</p>
+  <% } else if (products.length > 0) { %>
+    <div class="product-grid">
+      <% products.forEach(function(product) { %>
+        <%- include("partials/product-card", { product: product }) %>
+      <% }); %>
+    </div>
+    <%- include("partials/pagination", { pagination: pagination }) %>
+  <% } %>
+</section>

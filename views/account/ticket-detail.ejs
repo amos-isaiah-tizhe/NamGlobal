@@ -1,0 +1,12 @@
+<section class="account-page">
+  <h1><%= ticket.subject %></h1>
+  <p>Status: <%= ticket.status %></p>
+  <div class="ticket-thread">
+    <% ticket.messages.forEach(function(m) { %>
+      <div class="ticket-message">
+        <strong><%= m.sender ? m.sender.firstName : "You" %></strong>
+        <p><%= m.body %></p>
+      </div>
+    <% }); %>
+  </div>
+</section>

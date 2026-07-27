@@ -1,0 +1,57 @@
+<section class="legal-page">
+  <h1>Privacy Policy</h1>
+  <p class="legal-page__updated">Last updated: <%= new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+
+  <p><%= site.name %> ("we", "us") is committed to protecting your personal data in accordance with the Nigeria Data Protection Regulation (NDPR) and Nigeria Data Protection Act. This policy explains what we collect, why, and your rights over it.</p>
+
+  <h2>What we collect, and why</h2>
+  <table class="legal-table">
+    <thead><tr><th>Data</th><th>Purpose (lawful basis)</th></tr></thead>
+    <tbody>
+      <tr><td>Name, email, phone, delivery address</td><td>Order fulfillment and delivery — necessary to perform our contract with you</td></tr>
+      <tr><td>Account email/password (or Google/GitHub identity)</td><td>Account creation and login — necessary to provide the service you requested</td></tr>
+      <tr><td>Order history</td><td>Customer support, warranty/return handling — legitimate business interest</td></tr>
+      <tr><td>Marketing email consent (opt-in checkbox at registration)</td><td>Sending offers/newsletters — only with your explicit, separately-recorded consent; you can withdraw it anytime</td></tr>
+      <tr><td>Support ticket / WhatsApp order messages</td><td>Responding to your inquiries or order</td></tr>
+    </tbody>
+  </table>
+  <p>We do not collect more than we need for these purposes, and we do not sell your personal data to third parties.</p>
+
+  <h2>Payment data</h2>
+  <p>Card payments are processed entirely by Stripe, Paystack, or Flutterwave using their own hosted, PCI-DSS-compliant payment pages. We never receive, log, or store your card number, CVV, or full card details — our servers only ever see a payment reference/transaction ID from the provider.</p>
+
+  <h2>Cookies</h2>
+  <p>We currently use only essential cookies (session identification, shopping cart) required for the site to function — see our <a href="/cookie-policy">Cookie Policy</a> for details. We do not currently use analytics or marketing/advertising cookies; if that changes, this policy and a cookie consent banner will be updated accordingly.</p>
+
+  <h2>How long we keep your data</h2>
+  <p>Our retention policy is:</p>
+  <ul>
+    <li>Order history: for as long as your account is active, plus a reasonable period afterward for tax/accounting and warranty-claim purposes.</li>
+    <li>Abandoned carts (items added but never purchased): intended retention of 30 days of inactivity before removal.</li>
+    <li>Support tickets: intended retention of 2 years after resolution, then anonymization.</li>
+  </ul>
+  <p>You can request deletion of your data at any time using the form below, regardless of these default periods.</p>
+
+  <h2>Your rights</h2>
+  <p>Under the NDPR, you can request access to, correction of, or deletion of your personal data. Submit a request below — we aim to respond within 30 days.</p>
+
+  <form data-dsr-form class="legal-page__dsr-form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label>Request type
+      <select name="requestType" required>
+        <option value="data_access">Access my data</option>
+        <option value="data_correction">Correct my data</option>
+        <option value="data_deletion">Delete my data</option>
+      </select>
+    </label>
+    <% if (typeof user === "undefined" || !user) { %>
+      <label>Your email<input type="email" name="email" required></label>
+    <% } %>
+    <label>Details (optional)<textarea name="details" placeholder="Anything that helps us find/verify your records"></textarea></label>
+    <button type="submit" class="btn btn--primary">Submit request</button>
+  </form>
+  <p data-dsr-confirmation class="legal-page__dsr-confirmation" hidden></p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy: <a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a>, or <%= site.address.line1 %>, <%= site.address.city %>, <%= site.address.state %>, <%= site.address.country %>.</p>
+</section>

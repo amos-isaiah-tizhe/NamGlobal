@@ -1,0 +1,16 @@
+<h1>Support Tickets</h1>
+
+<table class="admin-table">
+  <thead><tr><th>Subject</th><th>Customer</th><th>Type</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    <% tickets.forEach(function(t) { %>
+      <tr>
+        <td><%= t.subject %></td>
+        <td><%= t.user ? t.user.email : (t.guestEmail || "—") %></td>
+        <td><%= t.type %></td>
+        <td><%= t.status %></td>
+        <td><a href="/admin/tickets/<%= t._id %>">View</a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

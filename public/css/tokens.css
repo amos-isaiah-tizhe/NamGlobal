@@ -1,0 +1,47 @@
+/**
+ * Design tokens — Nam Global
+ * Source: brand flyer (Section 1.1) → Section 2.13 of the master spec.
+ * Every component should reference these variables; never hardcode hex
+ * values directly, so a full re-theme for a different brand is a one-file
+ * change.
+ */
+:root {
+  /* Primary — flyer's signature orange (logo, iBUY badge, "AND OTHER" tag, primary CTAs) */
+  --color-primary: #F7941D;
+  --color-primary-hover: #E07C0A;
+  --color-primary-active: #C4690A;
+
+  /* Accent — red end of the flyer's orange-to-red gradient badges */
+  --color-accent: #ED1C24;
+  --color-accent-hover: #D4151C;
+
+  /* Gradient token for logo mark / badge treatments */
+  --gradient-brand: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+
+  /* Backgrounds */
+  --color-bg: #ffffff;
+  --color-surface: #ffffff;
+  --color-muted: #f4f4f5;
+
+  /* Text */
+  --color-text: #111111;
+  --color-text-secondary: #374151;
+  --color-text-muted: #6b7280;
+  --color-text-inverse: #ffffff;
+
+  /* Neutral / "iSELL" badge gray */
+  --color-neutral: #6b7280;
+  --color-neutral-dark: #1f1f1f;
+
+  /* Dark badge — matches "iSWAP" badge and "SWAPPING ALSO AVAILABLE" banner */
+  --color-dark-badge: #111111;
+
+  --color-border: #e5e7eb;
+
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+
+  /* Type scale */
+  --font-display: 'Poppins', 'Montserrat', Arial, sans-serif;
+  --font-body: 'Inter', Arial, sans-serif;
+}

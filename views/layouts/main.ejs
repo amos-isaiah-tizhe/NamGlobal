@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== "undefined" && title ? `${title} | ${site.name}` : `${site.name} — ${site.tagline}` %></title>
+  <meta name="csrf-token" content="<%= csrfToken %>">
+  <link rel="icon" href="<%= site.assets.favicon %>" type="image/svg+xml">
+
+  <!-- Section 2.9 — preconnect to Cloudinary since product images are hosted there -->
+  <link rel="preconnect" href="https://res.cloudinary.com">
+  <link rel="dns-prefetch" href="https://res.cloudinary.com">
+
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/main.css">
+
+  <%- include("../partials/seo-meta") %>
+</head>
+<body>
+  <!-- Section 2.12 — visible-on-focus skip link for keyboard/screen-reader users -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <%- include("../partials/header") %>
+
+  <main id="main-content">
+    <%- body %>
+  </main>
+
+  <%- include("../partials/footer") %>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<section class="legal-page">
+  <h1>Terms of Service</h1>
+  <p class="legal-page__updated">Last updated: <%= new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+
+  <h2>1. Overview</h2>
+  <p>These terms govern your use of <%= site.name %>'s website and your purchase, sale, or swap of phones and gadgets through it. By placing an order, creating an account, or using our WhatsApp checkout, you agree to these terms.</p>
+
+  <h2>2. Orders and payment</h2>
+  <p>Orders are confirmed once payment is verified by our payment provider (Stripe, Paystack, or Flutterwave), or, for WhatsApp orders, once our team confirms the order with you directly. Prices are listed in Naira (₦) and may change without notice; the price at the time your order is placed is the price you pay.</p>
+
+  <h2>3. Warranty</h2>
+  <p>Warranty coverage varies by product category, brand, and condition (new, fairly used, refurbished, or traded in) and is stated on each product page. Warranty does not cover physical damage, liquid damage, unauthorized repairs, misuse, software modifications, or improper handling. Keep your proof of purchase for any warranty claim.</p>
+
+  <h2 id="returns">4. Returns and exchanges</h2>
+  <p>Returns or exchanges may be requested within 7 days of delivery for eligible products, in original condition with all accessories, packaging, and proof of purchase. Devices that are physically damaged, tampered with, or modified may not qualify. We may require an inspection before approving a return, exchange, or refund.</p>
+
+  <h2>5. Buying, selling, and swapping (iBUY / iSELL / iSWAP)</h2>
+  <p>Devices submitted for sale or swap are subject to inspection and valuation by our team before any offer is finalized. We reserve the right to decline a device that fails inspection or verification (e.g. stolen-device checks).</p>
+
+  <h2>6. Delivery</h2>
+  <p><%= site.name %> delivers nationwide across Nigeria via GIG Logistics, DHL Nigeria, Kwik Delivery, and local dispatch riders. Delivery fees and estimated timelines depend on destination and order size, and are shown at checkout.</p>
+
+  <h2>7. Account responsibilities</h2>
+  <p>You're responsible for keeping your login credentials confidential and for all activity under your account. Contact us immediately if you suspect unauthorized access.</p>
+
+  <h2>8. Limitation of liability</h2>
+  <p>To the extent permitted by Nigerian law, <%= site.name %> is not liable for indirect or consequential losses arising from use of the site or products purchased through it, beyond the value of the relevant order.</p>
+
+  <h2>9. Changes to these terms</h2>
+  <p>We may update these terms from time to time; the "Last updated" date above reflects the most recent revision.</p>
+
+  <h2>10. Contact</h2>
+  <p><a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a> · <%= site.contact.phone %></p>
+</section>

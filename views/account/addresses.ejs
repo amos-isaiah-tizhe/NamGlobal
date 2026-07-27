@@ -1,0 +1,25 @@
+<section class="account-page">
+  <h1>Saved Addresses</h1>
+
+  <% addresses.forEach(function(a) { %>
+    <article class="address-card">
+      <strong><%= a.label %></strong><% if (a.isDefault) { %> <span class="badge-inline">Default</span><% } %>
+      <p><%= a.recipientName %> — <%= a.phone %></p>
+      <p><%= a.line1 %><%= a.line2 ? ", " + a.line2 : "" %>, <%= a.city %>, <%= a.state %>, <%= a.country %></p>
+      <button type="button" data-delete-address="<%= a._id %>">Remove</button>
+    </article>
+  <% }); %>
+
+  <h2>Add new address</h2>
+  <form method="POST" action="/account/addresses" class="auth-form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label>Label<input type="text" name="label" placeholder="Home"></label>
+    <label>Recipient name<input type="text" name="recipientName" required></label>
+    <label>Phone<input type="tel" name="phone" required></label>
+    <label>Address line 1<input type="text" name="line1" required></label>
+    <label>Address line 2<input type="text" name="line2"></label>
+    <label>City<input type="text" name="city" required></label>
+    <label>State<input type="text" name="state" required></label>
+    <button type="submit" class="btn btn--primary">Save address</button>
+  </form>
+</section>

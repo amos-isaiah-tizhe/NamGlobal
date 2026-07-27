@@ -1,0 +1,61 @@
+<section class="hero">
+  <img src="<%= site.assets.heroBackground %>" alt="" class="hero__bg" aria-hidden="true">
+  <div class="hero__content">
+    <h1><%= site.name %></h1>
+    <p><%= site.tagline %></p>
+    <div class="hero__ctas">
+      <a href="/category/smartphones" class="btn btn--primary">Shop Smartphones</a>
+      <a href="/contact" class="btn btn--outline">Talk to us</a>
+    </div>
+  </div>
+</section>
+
+<section class="category-strip">
+  <h2>Shop by category</h2>
+  <div class="category-strip__list">
+    <% categories.slice(0, 12).forEach(function(cat) { %>
+      <a href="/category/<%= cat.slug %>" class="category-chip"><%= cat.name %></a>
+    <% }); %>
+  </div>
+</section>
+
+<%- include("partials/product-grid", { products: flashSale, sectionTitle: "Flash Sales" }) %>
+<%- include("partials/product-grid", { products: featured, sectionTitle: "Featured Products" }) %>
+<%- include("partials/product-grid", { products: newArrivals, sectionTitle: "New Arrivals" }) %>
+<%- include("partials/product-grid", { products: trending, sectionTitle: "Trending Products" }) %>
+<%- include("partials/product-grid", { products: bestsellers, sectionTitle: "Best Sellers" }) %>
+<%- include("partials/product-grid", { products: latest, sectionTitle: "Latest Products" }) %>
+
+<section class="why-choose-us">
+  <h2>Why choose <%= site.name %></h2>
+  <ul>
+    <% whyChooseUs.forEach(function(reason) { %>
+      <li><%= reason %></li>
+    <% }); %>
+  </ul>
+</section>
+
+<section class="faq">
+  <h2>Frequently asked questions</h2>
+  <% faqs.forEach(function(faq) { %>
+    <details class="faq__item">
+      <summary><%= faq.question %></summary>
+      <p><%= faq.answer %></p>
+    </details>
+  <% }); %>
+</section>
+
+<section class="newsletter">
+  <h2>Stay in the loop</h2>
+  <p>Get the latest deals on phones and gadgets.</p>
+  <form method="POST" action="/newsletter/subscribe" class="newsletter__form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <input type="email" name="email" placeholder="you@example.com" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<section class="contact-cta">
+  <h2>Have a question?</h2>
+  <p>Reach us at <a href="tel:<%= site.contact.phone %>"><%= site.contact.phone %></a> or <a href="/contact">send a message</a>.</p>
+</section>

@@ -1,0 +1,18 @@
+<section class="legal-page">
+  <h1>Cookie Policy</h1>
+  <p class="legal-page__updated">Last updated: <%= new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }) %></p>
+
+  <p><%= site.name %> currently uses only <strong>essential cookies</strong> — the kind that don't require consent under the NDPR, but which we disclose here for transparency:</p>
+
+  <table class="legal-table">
+    <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th></tr></thead>
+    <tbody>
+      <tr><td><code>nam_global_sid</code></td><td>Identifies your logged-in session and shopping cart</td><td>7 days, or until you log out</td></tr>
+      <tr><td><code>nam_global_csrf</code></td><td>Security — prevents cross-site request forgery on forms</td><td>Session</td></tr>
+    </tbody>
+  </table>
+
+  <p>We do <strong>not</strong> currently use analytics cookies (e.g. Google Analytics), advertising/retargeting cookies, or third-party tracking pixels. If we add any of these in the future, we will update this page and show a cookie-consent banner before any non-essential cookie is set, as required by the NDPR.</p>
+
+  <p>Questions: <a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a>.</p>
+</section>

@@ -1,0 +1,21 @@
+<h1>Incident Response</h1>
+<p class="admin-note">Section 2.23 — session kill-switch. Use this when an account (or the whole site) may be compromised.</p>
+
+<h2>Invalidate one account's sessions</h2>
+<p class="admin-note">Logs the given account out of every device/browser immediately.</p>
+<form data-kill-user-form class="admin-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label>Account email<input type="email" name="email" required></label>
+  <button type="submit" class="btn btn--outline">Invalidate this account's sessions</button>
+</form>
+
+<h2>Invalidate ALL sessions (system-wide)</h2>
+<p class="admin-note">
+  Logs out <strong>every</strong> user on the site at once, including yourself. Use only for a
+  suspected system-wide breach. Type <code>INVALIDATE ALL SESSIONS</code> exactly to confirm.
+</p>
+<form data-kill-all-form class="admin-form">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <label>Confirmation phrase<input type="text" name="confirmation" placeholder="INVALIDATE ALL SESSIONS" required></label>
+  <button type="submit" class="btn btn--outline">Invalidate all sessions site-wide</button>
+</form>

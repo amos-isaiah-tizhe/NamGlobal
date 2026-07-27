@@ -1,0 +1,42 @@
+name: Database Backup
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # daily at 03:00 UTC
+  workflow_dispatch: {} # allow manually triggering a backup from the Actions tab
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install MongoDB Database Tools
+        run: |
+          wget -q https://fastdl.mongodb.org/tools/db/mongodb-database-tools-ubuntu2204-x86_64-100.9.4.deb
+          sudo apt-get install -y ./mongodb-database-tools-ubuntu2204-x86_64-100.9.4.deb
+
+      - name: Dump database
+        env:
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
+        run: |
+          mongodump --uri="$MONGODB_URI" --archive=backup.gz --gzip
+
+      - name: Encrypt backup before it leaves the runner
+        env:
+          BACKUP_ENCRYPTION_PASSPHRASE: ${{ secrets.BACKUP_ENCRYPTION_PASSPHRASE }}
+        run: |
+          # Section 2.7a — "Encrypt the mongodump backup exports before they
+          # leave the server — an unencrypted backup sitting in a storage
+          # bucket is a full data breach waiting to happen." Requires
+          # BACKUP_ENCRYPTION_PASSPHRASE set as a repo secret.
+          openssl enc -aes-256-cbc -pbkdf2 -salt \
+            -in backup.gz -out backup.gz.enc \
+            -pass pass:"$BACKUP_ENCRYPTION_PASSPHRASE"
+          rm backup.gz
+
+      - name: Upload as a dated GitHub Release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: backup-${{ github.run_id }}
+          name: "DB backup"
+          files: backup.gz.enc
+          body: "Automated encrypted MongoDB backup. Restore per DEPLOYMENT.md's Backups section."

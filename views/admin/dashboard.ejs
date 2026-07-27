@@ -1,0 +1,46 @@
+<h1>Dashboard</h1>
+
+<div class="admin-stats">
+  <div class="admin-stat-card">
+    <span class="admin-stat-card__label">Revenue (paid/fulfilled)</span>
+    <span class="admin-stat-card__value">&#8358;<%= revenue.toLocaleString() %></span>
+  </div>
+  <div class="admin-stat-card">
+    <span class="admin-stat-card__label">Active products</span>
+    <span class="admin-stat-card__value"><%= productCount %></span>
+  </div>
+  <div class="admin-stat-card admin-stat-card--warn">
+    <span class="admin-stat-card__label">Low stock (&le;5)</span>
+    <span class="admin-stat-card__value"><%= lowStockCount %></span>
+  </div>
+  <div class="admin-stat-card">
+    <span class="admin-stat-card__label">Open tickets</span>
+    <span class="admin-stat-card__value"><%= openTickets %></span>
+  </div>
+</div>
+
+<h2>Orders by status</h2>
+<div class="admin-status-chips">
+  <% Object.keys(statusMap).forEach(function(status) { %>
+    <span class="admin-status-chip">
+      <%= status %>: <%= statusMap[status] %>
+      <% if (status === "disputed" || status === "refund_requested") { %><strong>&#9888;</strong><% } %>
+    </span>
+  <% }); %>
+</div>
+
+<h2>Recent orders</h2>
+<table class="admin-table">
+  <thead><tr><th>Order #</th><th>Status</th><th>Channel</th><th>Total</th><th></th></tr></thead>
+  <tbody>
+    <% recentOrders.forEach(function(order) { %>
+      <tr>
+        <td><%= order.orderNumber %></td>
+        <td><span class="status-badge status-badge--<%= order.status %>"><%= order.status %></span></td>
+        <td><%= order.channel %></td>
+        <td>&#8358;<%= order.total.toLocaleString() %></td>
+        <td><a href="/admin/orders/<%= order._id %>">View</a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

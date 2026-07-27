@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> — <%= site.name %> Admin</title>
+  <meta name="csrf-token" content="<%= csrfToken %>">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" href="<%= site.assets.favicon %>" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/tokens.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <%- include("../partials/admin-nav") %>
+    <main class="admin-main">
+      <%- body %>
+    </main>
+  </div>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/admin.js" defer></script>
+</body>
+</html>

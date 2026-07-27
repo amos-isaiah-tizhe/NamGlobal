@@ -1,0 +1,26 @@
+<section class="account-page">
+  <h1>My Account</h1>
+  <nav class="account-nav">
+    <a href="/account">Overview</a>
+    <a href="/account/orders">Orders</a>
+    <a href="/account/wishlist">Wishlist</a>
+    <a href="/account/addresses">Addresses</a>
+    <a href="/account/profile">Profile</a>
+    <a href="/account/tickets">Support</a>
+    <form method="POST" action="/logout" style="display:inline">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <button type="submit">Log out</button>
+    </form>
+  </nav>
+
+  <h2>Recent orders</h2>
+  <% if (recentOrders.length === 0) { %>
+    <p class="empty-state">No orders yet. <a href="/">Start shopping</a>.</p>
+  <% } else { %>
+    <ul>
+      <% recentOrders.forEach(function(o) { %>
+        <li><a href="/account/orders/<%= o.orderNumber %>"><%= o.orderNumber %></a> — <%= o.status %> — &#8358;<%= o.total.toLocaleString() %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+</section>

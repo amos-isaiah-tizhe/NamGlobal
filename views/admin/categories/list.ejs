@@ -1,0 +1,22 @@
+<h1>Categories</h1>
+
+<form method="POST" action="/admin/categories" class="admin-form admin-form--inline">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <input type="text" name="name" placeholder="New category name" required>
+  <input type="text" name="description" placeholder="Description (optional)">
+  <button type="submit" class="btn btn--primary">Add</button>
+</form>
+
+<table class="admin-table">
+  <thead><tr><th>Name</th><th>Slug</th><th>Active</th><th></th></tr></thead>
+  <tbody>
+    <% categories.forEach(function(c) { %>
+      <tr>
+        <td><%= c.name %></td>
+        <td><%= c.slug %></td>
+        <td><%= c.isActive ? "Yes" : "No" %></td>
+        <td><button type="button" data-toggle-category="<%= c._id %>"><%= c.isActive ? "Deactivate" : "Activate" %></button></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>

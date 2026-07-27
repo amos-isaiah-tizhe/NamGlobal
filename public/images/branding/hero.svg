@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 560" width="700" height="560" role="img" aria-labelledby="heroTitle">
+  <title id="heroTitle">Generic device cluster illustration — phones, laptop, headphones</title>
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F7941D"/>
+      <stop offset="100%" stop-color="#ED1C24"/>
+    </linearGradient>
+  </defs>
+
+  <!-- back phone -->
+  <g transform="translate(430,40) rotate(10)">
+    <rect x="0" y="0" width="150" height="300" rx="24" fill="#1f1f1f"/>
+    <rect x="8" y="10" width="134" height="280" rx="18" fill="#2a2a2a"/>
+    <circle cx="75" cy="26" r="4" fill="#555"/>
+  </g>
+
+  <!-- middle phone -->
+  <g transform="translate(300,70) rotate(-6)">
+    <rect x="0" y="0" width="140" height="280" rx="22" fill="#111111"/>
+    <rect x="8" y="10" width="124" height="260" rx="16" fill="url(#heroGradient)" opacity="0.9"/>
+    <circle cx="70" cy="24" r="4" fill="#000" opacity="0.4"/>
+  </g>
+
+  <!-- front phone -->
+  <g transform="translate(190,140) rotate(-14)">
+    <rect x="0" y="0" width="130" height="260" rx="20" fill="#111111"/>
+    <rect x="7" y="9" width="116" height="242" rx="14" fill="#ffffff"/>
+  </g>
+
+  <!-- laptop -->
+  <g transform="translate(60,300)">
+    <path d="M0 190 L280 190 L300 220 L-20 220 Z" fill="#1f1f1f"/>
+    <rect x="10" y="0" width="260" height="180" rx="10" fill="#111111"/>
+    <rect x="20" y="10" width="240" height="160" rx="6" fill="url(#heroGradient)" opacity="0.15"/>
+  </g>
+
+  <!-- headphones -->
+  <g transform="translate(420,300)" stroke="#111111" stroke-width="10" fill="none" stroke-linecap="round">
+    <path d="M10 90 C10 30 55 0 110 0 C165 0 210 30 210 90"/>
+    <rect x="0" y="80" width="34" height="70" rx="14" fill="#111111" stroke="none"/>
+    <rect x="186" y="80" width="34" height="70" rx="14" fill="url(#heroGradient)" stroke="none"/>
+  </g>
+</svg>

@@ -1,0 +1,11 @@
+<% if (pagination && pagination.totalPages > 1) { %>
+<nav class="pagination" aria-label="Pagination">
+  <% if (pagination.hasPrevPage) { %>
+    <a href="?page=<%= pagination.page - 1 %>" class="pagination__link">&larr; Previous</a>
+  <% } %>
+  <span class="pagination__status">Page <%= pagination.page %> of <%= pagination.totalPages %></span>
+  <% if (pagination.hasNextPage) { %>
+    <a href="?page=<%= pagination.page + 1 %>" class="pagination__link">Next &rarr;</a>
+  <% } %>
+</nav>
+<% } %>

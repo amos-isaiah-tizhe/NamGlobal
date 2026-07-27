@@ -1,0 +1,24 @@
+<header class="site-header">
+  <a href="/" class="site-header__brand" aria-label="<%= site.name %> home">
+    <img src="<%= site.assets.logo %>" alt="<%= site.name %>" class="site-header__logo">
+  </a>
+
+  <form action="/search" method="GET" class="site-header__search" role="search">
+    <input type="search" name="q" placeholder="Search phones, gadgets..." aria-label="Search products">
+  </form>
+
+  <ul class="pillar-badges" aria-label="Our services">
+    <li class="pillar-badge pillar-badge--neutral">iSELL</li>
+    <li class="pillar-badge pillar-badge--gradient">iBUY</li>
+    <li class="pillar-badge pillar-badge--dark">iSWAP</li>
+  </ul>
+
+  <nav class="site-header__account" aria-label="Account and cart">
+    <a href="/cart" class="site-header__cart-link">Cart</a>
+    <% if (typeof user !== "undefined" && user) { %>
+      <a href="/account">Hi, <%= user.firstName %></a>
+    <% } else { %>
+      <a href="/login">Log in</a>
+    <% } %>
+  </nav>
+</header>

@@ -1,0 +1,73 @@
+<section class="product-page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a> &rsaquo;
+    <a href="/category/<%= product.category.slug %>"><%= product.category.name %></a> &rsaquo;
+    <span><%= product.name %></span>
+  </nav>
+
+  <div class="product-page__main">
+    <div class="product-page__gallery">
+      <img src="<%= product.images && product.images[0] ? product.images[0] : '/images/branding/hero.svg' %>" alt="<%= product.name %>" class="product-page__image">
+    </div>
+
+    <div class="product-page__info">
+      <h1><%= product.name %></h1>
+      <% if (product.brand) { %><p class="product-page__brand">Brand: <%= product.brand.name %></p><% } %>
+      <p class="product-page__sku">SKU: <%= product.sku %></p>
+
+      <p class="product-page__price">
+        <% if (product.discountPrice) { %>
+          <span class="product-page__price-discount">&#8358;<%= product.discountPrice.toLocaleString() %></span>
+          <span class="product-page__price-original">&#8358;<%= product.price.toLocaleString() %></span>
+        <% } else { %>
+          <span class="product-page__price-discount">&#8358;<%= product.price.toLocaleString() %></span>
+        <% } %>
+      </p>
+
+      <p class="product-page__stock">
+        <% if (product.stock > 0) { %>In stock (<%= product.stock %> available)<% } else { %>Out of stock<% } %>
+      </p>
+
+      <% if (product.shortDescription) { %><p><%= product.shortDescription %></p><% } %>
+
+      <div class="product-page__actions">
+        <button type="button" class="btn btn--primary" data-add-to-cart="<%= product._id %>" <%= product.stock === 0 ? "disabled" : "" %>>Add to cart</button>
+        <button type="button" class="btn btn--outline" data-buy-now="<%= product._id %>" <%= product.stock === 0 ? "disabled" : "" %>>Buy now</button>
+        <button type="button" class="btn btn--icon" data-wishlist-product="<%= product._id %>">
+          <%= isWishlisted ? "&#9829; Wishlisted" : "&#9825; Add to wishlist" %>
+        </button>
+      </div>
+
+      <p class="product-page__warranty">
+        <% if (product.warranty) { %><%= product.warranty %><% } else { %>Standard Nam Global warranty terms apply — see our <a href="/policies/warranty">warranty policy</a>.<% } %>
+      </p>
+    </div>
+  </div>
+
+  <% if (product.specifications && product.specifications.length > 0) { %>
+  <section class="product-page__specs">
+    <h2>Specifications</h2>
+    <table>
+      <% product.specifications.forEach(function(spec) { %>
+        <tr><th><%= spec.label %></th><td><%= spec.value %></td></tr>
+      <% }); %>
+    </table>
+  </section>
+  <% } %>
+
+  <% if (product.reviews && product.reviews.length > 0) { %>
+  <section class="product-page__reviews">
+    <h2>Reviews (<%= product.reviews.length %>) &mdash; <%= product.rating %>&#9733;</h2>
+    <% product.reviews.forEach(function(review) { %>
+      <article class="review">
+        <strong><%= review.user ? review.user.firstName : "Verified buyer" %></strong>
+        <span><%= review.rating %>&#9733;</span>
+        <p><%= review.comment %></p>
+      </article>
+    <% }); %>
+  </section>
+  <% } %>
+
+  <%- include("partials/product-grid", { products: related, sectionTitle: "Related products" }) %>
+  <%- include("partials/product-grid", { products: recentlyViewedProducts, sectionTitle: "Recently viewed" }) %>
+</section>

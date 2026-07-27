@@ -1,0 +1,33 @@
+# Nam Global
+
+> Nam Global is a Nigerian consumer electronics and gadget business based in Keffi, Nasarawa State, specializing in the sale, purchase, and swapping of quality smartphones, laptops, gaming consoles, accessories, and other modern gadgets.
+
+Founded in 2021, Nam Global serves customers looking for reliable devices, competitive deals, and convenient phone and gadget exchange services — marketed under three core services: iSELL (we sell to you), iBUY (we buy your device), and iSWAP (trade-in/exchange).
+
+## Key pages
+
+- Homepage: https://namsglobal.com/ — featured products, flash sales, new arrivals, categories
+- Product categories: https://namsglobal.com/category/{category-slug} (e.g. /category/smartphones, /category/iphones, /category/macbooks, /category/headphones)
+- Search: https://namsglobal.com/search?q={query}
+- Contact: https://namsglobal.com/contact
+
+## Product categories
+
+Smartphones (iPhones, Android, Samsung Galaxy, Google Pixel, Tecno, Infinix, Xiaomi), MacBooks, Windows Laptops, Tablets, iPads, Smartwatches, Gaming Consoles (PlayStation, Xbox, Nintendo) and accessories, Headphones, Earbuds, Bluetooth Speakers, Phone and Laptop Accessories, Chargers, Power Banks, Phone Cases, Screen Protectors, Cameras, Smart Home Gadgets.
+
+## Services
+
+Phone buying and selling, phone/gadget swapping, device trade-in, gadget valuation, bulk/corporate gadget supply, product sourcing assistance, device inspection and verification, nationwide delivery across Nigeria.
+
+## Policies
+
+- Returns: Returns or exchanges may be requested within 7 days of delivery for eligible products, in original condition with proof of purchase.
+- Warranty: Warranty terms vary by product category, brand, and condition (new, fairly used, refurbished, or traded in); does not cover physical/liquid damage, unauthorized repairs, or misuse.
+- Delivery: Nam Global delivers nationwide across Nigeria, including Abuja, Lagos, Kano, Port Harcourt, and Enugu, in addition to its home base of Keffi.
+
+## Contact
+
+- Phone/WhatsApp: +234 704 405 0277
+- Support: +234 906 026 5963
+- Email: hello@namsglobal.com
+- Address: MMS Plaza, Low-Cost Area, Keffi, Nasarawa, Nigeria

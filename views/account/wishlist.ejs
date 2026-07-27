@@ -1,0 +1,12 @@
+<section class="account-page">
+  <h1>My Wishlist</h1>
+  <% if (products.length === 0) { %>
+    <p class="empty-state">Your wishlist is empty.</p>
+  <% } else { %>
+    <div class="product-grid">
+      <% products.forEach(function(product) { %>
+        <%- include("../partials/product-card", { product: product }) %>
+      <% }); %>
+    </div>
+  <% } %>
+</section>

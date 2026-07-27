@@ -1,0 +1,24 @@
+<meta name="description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : site.tagline %>">
+<link rel="canonical" href="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : site.url %>">
+
+<meta property="og:site_name" content="<%= site.name %>">
+<meta property="og:title" content="<%= typeof title !== 'undefined' && title ? title : site.name %>">
+<meta property="og:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : site.tagline %>">
+<meta property="og:type" content="<%= typeof ogType !== 'undefined' ? ogType : 'website' %>">
+<meta property="og:url" content="<%= typeof canonicalUrl !== 'undefined' ? canonicalUrl : site.url %>">
+<meta property="og:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : site.url + site.assets.hero %>">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= typeof title !== 'undefined' && title ? title : site.name %>">
+<meta name="twitter:description" content="<%= typeof metaDescription !== 'undefined' ? metaDescription : site.tagline %>">
+<meta name="twitter:image" content="<%= typeof ogImage !== 'undefined' ? ogImage : site.url + site.assets.hero %>">
+
+<% if (typeof baseStructuredData !== 'undefined' && baseStructuredData) { %>
+  <script type="application/ld+json" nonce="<%= cspNonce %>"><%- JSON.stringify(baseStructuredData) %></script>
+<% } %>
+
+<% if (typeof structuredData !== 'undefined' && structuredData) { %>
+  <% structuredData.forEach(function(schema) { %>
+    <script type="application/ld+json" nonce="<%= cspNonce %>"><%- JSON.stringify(schema) %></script>
+  <% }); %>
+<% } %>

@@ -1,0 +1,60 @@
+<section class="contact">
+  <h1>Contact <%= site.name %></h1>
+
+  <div class="contact-info">
+    <div class="contact-info__block">
+      <h2>Visit or write to us</h2>
+      <p><%= site.address.line1 %>, <%= site.address.line2 %><br>
+         <%= site.address.city %>, <%= site.address.state %>, <%= site.address.country %> <%= site.address.postalCode %></p>
+      <p>
+        <a href="tel:<%= site.contact.phone %>"><%= site.contact.phone %></a> ·
+        <a href="tel:<%= site.contact.supportPhone %>"><%= site.contact.supportPhone %></a> ·
+        <a href="mailto:<%= site.contact.email %>"><%= site.contact.email %></a>
+      </p>
+    </div>
+
+    <div class="contact-info__block">
+      <h2>Business hours</h2>
+      <table class="contact-hours">
+        <% site.businessHours.forEach(function(row) { %>
+          <tr><th><%= row.days %></th><td><%= row.hours %></td></tr>
+        <% }); %>
+      </table>
+    </div>
+
+    <div class="contact-info__block">
+      <h2>Delivery coverage</h2>
+      <p><%= site.deliveryCoverage.join(", ") %></p>
+    </div>
+
+    <div class="contact-info__block">
+      <h2>Follow us</h2>
+      <ul class="contact-social">
+        <% site.socialMedia.forEach(function(s) { %>
+          <li><a href="<%= s.url %>" rel="noopener" target="_blank"><%= s.platform %> (<%= s.handle %>)</a></li>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
+
+  <form method="POST" action="/contact" class="contact-form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <label for="fullName">Full name</label>
+    <input id="fullName" name="fullName" type="text" placeholder="Isaiah Amos Tizhe" required>
+
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="isaiah.amos@namsglobal.com" required>
+
+    <label for="phone">Phone / WhatsApp</label>
+    <input id="phone" name="phone" type="tel" placeholder="+234 803 456 7890">
+
+    <label for="subject">Subject</label>
+    <input id="subject" name="subject" type="text" placeholder="Inquiry About Products" required>
+
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="5" required></textarea>
+
+    <button type="submit">Send message</button>
+  </form>
+</section>

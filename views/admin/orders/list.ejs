@@ -1,0 +1,32 @@
+<h1>Orders</h1>
+
+<form method="GET" class="admin-form admin-form--inline">
+  <select name="status" onchange="this.form.submit()">
+    <option value="">All statuses</option>
+    <% statuses.forEach(function(s) { %>
+      <option value="<%= s %>" <%= activeStatus === s ? "selected" : "" %>><%= s %></option>
+    <% }); %>
+  </select>
+</form>
+
+<table class="admin-table">
+  <thead><tr><th>Order #</th><th>Status</th><th>Channel</th><th>Total</th><th>Date</th><th></th></tr></thead>
+  <tbody>
+    <% orders.forEach(function(order) { %>
+      <tr>
+        <td><%= order.orderNumber %></td>
+        <td><span class="status-badge status-badge--<%= order.status %>"><%= order.status %></span></td>
+        <td><%= order.channel %></td>
+        <td>&#8358;<%= order.total.toLocaleString() %></td>
+        <td><%= order.createdAt.toDateString() %></td>
+        <td><a href="/admin/orders/<%= order._id %>">View</a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<nav class="pagination">
+  <% if (page > 1) { %><a href="?page=<%= page - 1 %>&status=<%= activeStatus %>">&larr; Prev</a><% } %>
+  <span>Page <%= page %> of <%= totalPages %></span>
+  <% if (page < totalPages) { %><a href="?page=<%= page + 1 %>&status=<%= activeStatus %>">Next &rarr;</a><% } %>
+</nav>

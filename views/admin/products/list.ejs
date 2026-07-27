@@ -1,0 +1,24 @@
+<h1>Products</h1>
+<a href="/admin/products/new" class="btn btn--primary">+ New Product</a>
+
+<table class="admin-table">
+  <thead><tr><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th></th></tr></thead>
+  <tbody>
+    <% products.forEach(function(p) { %>
+      <tr>
+        <td><%= p.name %></td>
+        <td><%= p.category ? p.category.name : "—" %></td>
+        <td>&#8358;<%= p.price.toLocaleString() %></td>
+        <td><%= p.stock %></td>
+        <td><span class="status-badge"><%= p.status %></span></td>
+        <td><a href="/admin/products/<%= p._id %>/edit">Edit</a></td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<nav class="pagination">
+  <% if (page > 1) { %><a href="?page=<%= page - 1 %>">&larr; Prev</a><% } %>
+  <span>Page <%= page %> of <%= totalPages %></span>
+  <% if (page < totalPages) { %><a href="?page=<%= page + 1 %>">Next &rarr;</a><% } %>
+</nav>

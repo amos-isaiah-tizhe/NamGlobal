@@ -1,0 +1,21 @@
+<section class="account-page">
+  <h1>My Orders</h1>
+  <% if (orders.length === 0) { %>
+    <p class="empty-state">No orders yet.</p>
+  <% } else { %>
+    <table class="admin-table">
+      <thead><tr><th>Order #</th><th>Status</th><th>Total</th><th>Date</th><th></th></tr></thead>
+      <tbody>
+        <% orders.forEach(function(o) { %>
+          <tr>
+            <td><%= o.orderNumber %></td>
+            <td><span class="status-badge status-badge--<%= o.status %>"><%= o.status %></span></td>
+            <td>&#8358;<%= o.total.toLocaleString() %></td>
+            <td><%= o.createdAt.toDateString() %></td>
+            <td><a href="/account/orders/<%= o.orderNumber %>">View</a></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } %>
+</section>

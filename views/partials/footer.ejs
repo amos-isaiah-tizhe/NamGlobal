@@ -1,0 +1,24 @@
+<footer class="site-footer">
+  <p>
+    &copy; <%= site.currentYear %> <%= site.name %>. All Rights Reserved.<br>
+    <%= site.tagline %><br>
+    Website designed and developed by
+    <a href="<%= site.developer.url %>" rel="noopener"><%= site.developer.name %></a>
+    for
+    <a href="<%= site.developer.brandUrl %>" rel="noopener"><%= site.developer.brand %></a>.
+  </p>
+  <p class="site-footer__contact">
+    Call / WhatsApp:
+    <a href="tel:<%= site.contact.phone %>"><%= site.contact.phone %></a> ·
+    <a href="tel:<%= site.contact.supportPhone %>"><%= site.contact.supportPhone %></a> ·
+    <a href="tel:<%= site.contact.altPhone %>"><%= site.contact.altPhone %></a>
+  </p>
+  <p class="site-footer__legal">
+    <a href="/privacy-policy">Privacy Policy</a> ·
+    <a href="/terms">Terms of Service</a> ·
+    <a href="/cookie-policy">Cookie Policy</a>
+  </p>
+  <p class="site-footer__social">
+    <% site.socialMedia.forEach(function(s, i) { %><a href="<%= s.url %>" rel="noopener" target="_blank"><%= s.platform %></a><%= i < site.socialMedia.length - 1 ? " · " : "" %><% }); %>
+  </p>
+</footer>

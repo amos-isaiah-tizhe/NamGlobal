@@ -1,0 +1,126 @@
+# Render Blueprint — https://render.com/docs/blueprint-spec
+#
+# Defines both services this project needs on Render's free tier
+# (Section 2.21): the web app and the BullMQ background worker (Stage 10).
+# Push this file to the repo root and use Render's "New > Blueprint" flow
+# to create both services from it in one step.
+#
+# IMPORTANT — free tier limits that shape this file:
+#   - Free web services spin down after ~15 min of inactivity and take
+#     30-60s to cold-start on the next request. Ping /health every 5 min
+#     with UptimeRobot (Section 2.21) to keep it warm, or accept the cold
+#     start for a low-traffic launch.
+#   - Free background workers behave the same way for idle CPU credits.
+#   - Pre-deploy commands and shell/SSH access are PAID-plan features on
+#     Render — not available here. That's why migrations run as part of
+#     the build command instead (safe: migrate-mongo tracks which
+#     migrations already ran and skips them), and why seeding is NOT run
+#     automatically — see the README's "Seeding production data" section
+#     for the one-time manual step instead.
+
+services:
+  - type: web
+    name: nam-global
+    runtime: node
+    plan: free
+    region: oregon # change to whichever Render region is closest to your users
+    buildCommand: npm ci && npm run migrate:up
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      # Everything below is a SECRET or environment-specific value — set
+      # these in the Render dashboard (Environment tab), not here, so they
+      # never end up committed to the repo. `sync: false` tells Render's
+      # Blueprint to prompt for a value instead of requiring one in this file.
+      - key: SITE_URL
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: SESSION_SECRET
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: PAYSTACK_SECRET_KEY
+        sync: false
+      - key: PAYSTACK_WEBHOOK_SECRET
+        sync: false
+      - key: FLUTTERWAVE_SECRET_KEY
+        sync: false
+      - key: FLUTTERWAVE_WEBHOOK_SECRET
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GOOGLE_CALLBACK_URL
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_CALLBACK_URL
+        sync: false
+      - key: GITHUB_ALLOWED_ORG
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: ADMIN_DEFAULT_EMAIL
+        sync: false
+      - key: ADMIN_DEFAULT_PASSWORD
+        sync: false
+      - key: ADMIN_DEFAULT_NAME
+        sync: false
+      - key: ADMIN_DEFAULT_USERNAME
+        sync: false
+
+  - type: worker
+    name: nam-global-worker
+    runtime: node
+    plan: free
+    region: oregon # keep in the same region as the web service
+    buildCommand: npm ci
+    startCommand: npm run worker
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - fromService:
+          name: nam-global
+          type: web
+          envVarKey: MONGODB_URI
+        key: MONGODB_URI
+      - fromService:
+          name: nam-global
+          type: web
+          envVarKey: REDIS_URL
+        key: REDIS_URL
+      - fromService:
+          name: nam-global
+          type: web
+          envVarKey: RESEND_API_KEY
+        key: RESEND_API_KEY
+      - fromService:
+          name: nam-global
+          type: web
+          envVarKey: SITE_URL
+        key: SITE_URL
+      - fromService:
+          name: nam-global
+          type: web
+          envVarKey: SESSION_SECRET
+        key: SESSION_SECRET

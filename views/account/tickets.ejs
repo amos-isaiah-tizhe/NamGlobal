@@ -1,0 +1,21 @@
+<section class="account-page">
+  <h1>My Support Tickets</h1>
+
+  <% if (tickets.length === 0) { %>
+    <p class="empty-state">No support tickets yet.</p>
+  <% } else { %>
+    <ul>
+      <% tickets.forEach(function(t) { %>
+        <li><a href="/account/tickets/<%= t._id %>"><%= t.subject %></a> — <%= t.status %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+
+  <h2>New ticket</h2>
+  <form method="POST" action="/account/tickets" class="auth-form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <label>Subject<input type="text" name="subject" required></label>
+    <label>Message<textarea name="message" required></textarea></label>
+    <button type="submit" class="btn btn--primary">Submit ticket</button>
+  </form>
+</section>

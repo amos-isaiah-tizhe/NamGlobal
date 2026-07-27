@@ -1,0 +1,33 @@
+<section class="auth-page">
+  <h1>Create an account</h1>
+
+  <form method="POST" action="/register" class="auth-form">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+
+    <label for="firstName">First name</label>
+    <input id="firstName" name="firstName" type="text" placeholder="Isaiah" required>
+
+    <label for="lastName">Last name</label>
+    <input id="lastName" name="lastName" type="text" placeholder="Tizhe" required>
+
+    <label for="email">Email</label>
+    <input id="email" name="email" type="email" placeholder="isaiah.amos@namsglobal.com" required>
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" placeholder="********" required>
+
+    <label class="auth-form__checkbox">
+      <input type="checkbox" name="marketingConsent" value="true">
+      Send me offers and updates (optional)
+    </label>
+
+    <p class="auth-form__legal-note">
+      By creating an account you agree to our <a href="/terms">Terms of Service</a>
+      and <a href="/privacy-policy">Privacy Policy</a>.
+    </p>
+
+    <button type="submit">Create account</button>
+  </form>
+
+  <a href="/auth/google" class="auth-oauth-button">Continue with Google</a>
+</section>
